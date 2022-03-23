@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *stream, *Fstream;
+    int Rows, Cols;
+    scanf("%d", &Cols);
+    scanf("%d", &Rows);
+    char mas[100][100],s;
+    int i = 0, k = 0;
+    stream = fopen("adjacency_matrix_94.txt", "r");
+    while(!feof(stream)){
+            fscanf(stream, "%c", &s);
+            if(s != ' ' && s != '\n'){
+                mas[i][k] = s;
+                k ++;
+                if(k == Cols){
+                    i ++;
+                    k = 0;
+                }
+            }
+    }
+    Fstream = fopen("res.gv", "w");
+    fprintf(Fstream, "graph grath {\n");
+    for(int q = 0; q < Rows; q ++){
+        for(int z = 0; z < Cols; z ++){
+            if(mas[q][z] != '0'){
+                printf("%d - %c\n", z+1, mas[q][z]);
+                fprintf(Fstream, " %d — %d\n", q+1, z+1);
+            }
+        }
+        printf("\n");
+    }
+    fprintf(Fstream, "}");
+    fclose(Fstream);
+}
