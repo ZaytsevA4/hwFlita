@@ -14,13 +14,16 @@ int main()
             fscanf(stream, "%c", &s);
             if(s != ' ' && s != '\n'){
                 mas[i][k] = s;
+                printf("%c ", mas[i][k]);
                 k ++;
                 if(k == Cols){
+                    printf("\n");
                     i ++;
                     k = 0;
                 }
             }
     }
+    printf("-----------------\n");
     Fstream = fopen("res.gv", "w");
     fprintf(Fstream, "graph grath {\n");
     for(int q = 0; q < Rows; q ++){
@@ -35,3 +38,4 @@ int main()
     fprintf(Fstream, "}");
     fclose(Fstream);
 }
+
